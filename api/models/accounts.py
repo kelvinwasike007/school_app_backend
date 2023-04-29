@@ -1,21 +1,15 @@
-"""Authentications"""
-def login() -> int:
-    """Log In user"""
-    return 1
+from mongoengine import *
+from enum import Enum
+from .School import School
+class Roles(Enum):
+    STAFF = 'staff'
+    ADMIN = 'admin'
+    PARENT = 'parent'
+    STUDENT = 'student'
 
-
-def createaccount() -> int:
-    """Create a new account"""
-    return 1
-
-def deleteaccount()->int:
-    """delete an account"""
-    return 1
-
-def updateaccount()->int:
-    """update an account"""
-    return 1
-
-def accountlist()->int:
-    """get list of accounts"""
-    return 1
+class Account(Document):
+    """User Account"""
+    username = StringField()
+    password = StringField()
+    role = EnumField(Roles, default=Roles.STUDENT)
+    school = ReferenceField(School, required=True, reverse_delete_rule=CASCADE)
