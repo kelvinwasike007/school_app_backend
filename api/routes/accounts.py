@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from ..views.accounts import login, createaccount,updateaccount,deleteaccount,accountlist
 from .schools import updateSchema
 from pydantic import BaseModel
-from typing import Annotated
+
 
 
 router = APIRouter(
