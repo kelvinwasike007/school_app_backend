@@ -14,7 +14,7 @@ app.include_router(schools.router)
 #User Account Routes
 app.include_router(accounts.router)
 
-@app.get("/")
+@app.get("/health", status_code=200)
 def root()->dict:
     """yes"""
     return {"hello":"world"}
