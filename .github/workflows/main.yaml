@@ -10,7 +10,7 @@ jobs:
         fetch-depth: 2
     
     - name: Create Environment Variable
-    - run : |
+      run : |
         echo "DB_URL=${{ secrets.DB_URL }}" >> .env
         echo "APP_KEY=${{secrets.APP_KET }}" >> .env
         ls
