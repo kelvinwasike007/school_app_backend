@@ -12,7 +12,7 @@ jobs:
     - name: Create Environment Variable
       run : |
         echo "DB_URL=${{ secrets.DB_URL }}" >> .env
-        echo "APP_KEY=${{secrets.APP_KET }}" >> .env
+        echo "APP_KEY=${{secrets.APP_KEY }}" >> .env
         ls
         cat .env
 
