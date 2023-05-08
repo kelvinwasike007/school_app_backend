@@ -1,6 +1,7 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from ..views.school import add, list,update,delete
 from pydantic import BaseModel
+from ..helpers.auth import logout
 router = APIRouter(
     prefix='/schools',
     tags=['Manage Schools']
@@ -28,11 +29,11 @@ def new_school(school: School):
     """Add new school"""
     return add(school)
 
-@router.put('/update/{schoolId}')
+@router.put('/update/{schoolId}', dependencies=[Depends(logout)])
 def update_school(updateInfo:updateSchema, schoolId):
     """Update school information"""
     return update(updateInfo, schoolId)
 
-@router.delete('/delete/{schoolId}')
+@router.delete('/delete/{schoolId}' , dependencies=[Depends(logout)])
 def delete_school(schoolId:str):
     return delete(schoolId)
