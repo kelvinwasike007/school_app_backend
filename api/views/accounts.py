@@ -8,10 +8,13 @@ import os
 import jwt
 import datetime
 
+
 """Authentications"""
 def login(schoolId, creds) -> int:
     """Log In user"""
     lookUp = Account.objects(school=schoolId,username=creds.username).first()
+    if(lookUp == None):
+         return {"status":"error", "msg":"Invalid Credentials"}
     if(lookUp.password != md5(creds.password.encode()).hexdigest()):
          return {"status": "error", "msg": "Invalid Credentials"}
     
@@ -20,7 +23,8 @@ def login(schoolId, creds) -> int:
     payload = {
          "username":lookUp.username,
          "schoolId": schoolId,
-         "role": f'{role}'
+         "role": f'{role}',
+         "exp": datetime.datetime.now() + datetime.timedelta(hours=2)
     }
 
     load_dotenv()
