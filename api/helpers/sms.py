@@ -1,4 +1,9 @@
 import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 def signup_msg(phone, domain, account):
     server = "https://api.africastalking.com/version1/messaging"
     payload = {
@@ -15,7 +20,7 @@ def signup_msg(phone, domain, account):
             """,
     }
     heads={
-        'apiKey': '7c857b85054b7cbb6235099c6108f6472ec7617617903126ca375e37ad4ce1e9',
+        'apiKey': os.getenv("SMS_API_KEY"),
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -30,7 +35,7 @@ def bulk(phones, message):
         'message': message,
     }
     heads={
-        'apiKey': '7c857b85054b7cbb6235099c6108f6472ec7617617903126ca375e37ad4ce1e9',
+        'apiKey': os.getenv("SMS_API_KEY"),
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
     }
