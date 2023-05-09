@@ -3,11 +3,15 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def sendMail(recipients, message, subject):
     server = "mail.wesempire.co.ke"
-    username = "school-platform@wesempire.co.ke"
-    password = "45454245@school-platform"
+    username = os.getenv('EMAIL')
+    password = os.getenv('EMAIL_PASSWORD')
     port = 465
     msg = MIMEMultipart()
     msg['Subject'] = subject
