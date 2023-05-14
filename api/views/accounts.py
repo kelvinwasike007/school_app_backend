@@ -30,7 +30,7 @@ def login(schoolId, creds) -> int:
     load_dotenv()
     key = os.getenv('APP_KEY')
     token = jwt.encode({"exp": expiration_time, **payload}, key, algorithm="HS256")
-    return {"status": "ok", "token": token}
+    return {"status": "ok", "token": token, "role":lookup.role}
 
 
 def createaccount(schoolId, accounts) -> int:
